@@ -1,0 +1,3 @@
+/home/PRAK/Projects/Chess validator/build/CMakeFiles/chess_validator.dir
+/home/PRAK/Projects/Chess validator/build/CMakeFiles/edit_cache.dir
+/home/PRAK/Projects/Chess validator/build/CMakeFiles/rebuild_cache.dir
