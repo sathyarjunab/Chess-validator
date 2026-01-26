@@ -11,7 +11,7 @@ struct RayScanReturn
     char direction;
 };
 
-RayScanReturn rayScan(const std::vector<std::vector<int>>& board,
+RayScanReturn rayScan(const std::vector<std::vector<int>> &board,
                       int x,
                       int y,
                       int color,
