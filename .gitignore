@@ -1,0 +1,41 @@
+# Build directories
+build/
+cmake-build-*/
+
+# Compiled binaries
+*.out
+*.exe
+*.app
+
+# Object files
+*.o
+*.obj
+*.lo
+
+# Static and dynamic libraries
+*.a
+*.so
+*.dylib
+*.dll
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+compile_commands.json
+
+# Debug / profiling
+*.gdb
+*.prof
+*.valgrind
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
