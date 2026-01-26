@@ -11,7 +11,7 @@ bool isKingInCheck(const vector<vector<int>> &board,
                    int kingColor)
 {
 
-    // gives all the
+    // gives all the L-shaped moves
     vector<vector<int>> moves = lMovement(board, kingX, kingY);
 
     // Check for knight attacks
@@ -61,15 +61,31 @@ bool isKingInCheck(const vector<vector<int>> &board,
             // bishop or queen
             if ((d[0] != 0 && d[1] != 0) && (absPiece == 3 || absPiece == 5))
                 return true;
+        }
+    }
 
-            // pawn attack
-            if (abs(piece) == 1 && hit.steps == 1 && (d[0] != 0 && d[1] != 0))
-            {
-                if (kingColor > 0 && kingX > hit.x && piece == -1)
-                    return true;
-                if (kingColor < 0 && kingX < hit.x && piece == 1)
-                    return true;
-            }
+    // pawn attack
+    if (kingColor > 0)
+    {
+        int x = kingX + 1;
+        if (x < board.size())
+        {
+            if (kingY > 0 && board[x][kingY - 1] == -1)
+                return true;
+            if (kingY < board[0].size() && board[x][kingY + 1] == -1)
+                return true;
+        }
+    }
+    else
+    {
+
+        int x = kingX - 1;
+        if (x > 0)
+        {
+            if (kingY > 0 && board[x][kingY - 1] == 1)
+                return true;
+            if (kingY < board[0].size() && board[x][kingY + 1] == 1)
+                return true;
         }
     }
 
