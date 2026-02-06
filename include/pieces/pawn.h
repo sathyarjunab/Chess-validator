@@ -1,20 +1,11 @@
 #ifndef PAWN_H
 #define PAWN_H
 
+#include "./../board.h"
+
 using namespace std;
 
 #include <vector>
-
-/*
-Color mapping:
-WHITE =  1
-BLACK = -1
-*/
-enum Color
-{
-    WHITE = 1,
-    BLACK = -1
-};
 
 /**
  * Returns all valid pawn moves for a pawn at (x, y),

@@ -4,11 +4,12 @@ using namespace std;
 #include "./../../include/pieces/king.h"
 #include "./../../include/common-moves/traveling.h"
 #include "./../../include/pieces/knight.h"
+#include "./../../include/board.h"
 
 bool isKingInCheck(const vector<vector<int>> &board,
                    int kingX,
                    int kingY,
-                   int kingColor)
+                   Color kingColor)
 {
 
     // gives all the L-shaped moves
@@ -20,12 +21,12 @@ bool isKingInCheck(const vector<vector<int>> &board,
         int x = move[0];
         int y = move[1];
 
-        if (kingColor < 0 && board[x][y] == 2)
+        if (kingColor == BLACK && board[x][y] == 2)
         {
             return true;
         }
 
-        if (kingColor > 0 && board[x][y] == -2)
+        if (kingColor == WHITE && board[x][y] == -2)
         {
             return true;
         }
@@ -50,7 +51,7 @@ bool isKingInCheck(const vector<vector<int>> &board,
         int piece = board[hit.x][hit.y];
 
         // opponent piece only
-        if ((piece > 0 && kingColor < 0) || (piece < 0 && kingColor > 0))
+        if ((piece > 0 && kingColor == BLACK) || (piece < 0 && kingColor == WHITE))
         {
             int absPiece = abs(piece);
 
@@ -65,7 +66,7 @@ bool isKingInCheck(const vector<vector<int>> &board,
     }
 
     // pawn attack
-    if (kingColor > 0)
+    if (kingColor == WHITE)
     {
         int x = kingX + 1;
         if (x < board.size())

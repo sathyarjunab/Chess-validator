@@ -1,7 +1,11 @@
 using namespace std;
 
 #include "./../../include/pieces/knight.h"
+#include "./../../include/pieces/king.h"
+#include "./../../include/pieces/pawn.h" // TODO:remove this and move the color enum to a common place;
+
 #include <vector>
+#include <algorithm>
 
 // returns all valid L-shaped moves for a knight from (x, y) on the board
 vector<vector<int>> lMovement(vector<vector<int>> &board, int x, int y)
@@ -26,4 +30,40 @@ vector<vector<int>> lMovement(vector<vector<int>> &board, int x, int y)
     }
 
     return moves;
+}
+
+vector<vector<int>> knightMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color)
+{
+    vector<vector<int>> validMoves;
+    if (isKingInCheck(board, kingX, kingY, color))
+    {
+        // check if the game is over by checkmate or stalemate
+    }
+    // else then we can calculate the valid moves for the knight
+
+    vector<vector<int>> possibleMoves = lMovement(board, x, y);
+
+    vector<vector<int>> knightMoves;
+
+    for (vector<int> move : possibleMoves)
+    {
+        int dx = move[0];
+        int dy = move[1];
+
+        if (board[dx][dy] == 0 || (board[dx][dy] > 0 && color == BLACK) || (board[dx][dy] < 0 && color == WHITE))
+        {
+            vector<vector<int>> copyBoard = board;
+            copyBoard[dx][dy] = board[x][y];
+            copyBoard[x][y] = 0;
+            if (isKingInCheck(copyBoard, kingX, kingY, color))
+            {
+                continue;
+            }
+            else
+            {
+                knightMoves.push_back(move);
+            }
+        }
+    }
+    return knightMoves;
 }
