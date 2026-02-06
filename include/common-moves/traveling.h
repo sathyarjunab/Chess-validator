@@ -3,18 +3,23 @@
 
 #include <vector>
 
+enum Direction
+{
+    ORTHOGONAL = 'O',
+    DIAGONAL = 'D',
+};
+
 struct RayScanReturn
 {
     int x;
     int y;
     int steps;
-    char direction;
+    Direction direction;
 };
 
 RayScanReturn rayScan(const std::vector<std::vector<int>> &board,
                       int x,
                       int y,
-                      int color,
                       int dx,
                       int dy);
 

@@ -43,7 +43,7 @@ bool isKingInCheck(const vector<vector<int>> &board,
 
     for (auto &d : directions)
     {
-        RayScanReturn hit = rayScan(board, kingX, kingY, kingColor, d[0], d[1]);
+        RayScanReturn hit = rayScan(board, kingX, kingY, d[0], d[1]);
 
         if (hit.x == -1)
             continue;
