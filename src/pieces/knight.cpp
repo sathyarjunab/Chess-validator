@@ -4,11 +4,13 @@ using namespace std;
 #include "./../../include/pieces/king.h"
 #include "./../../include/pieces/pawn.h" // TODO:remove this and move the color enum to a common place;
 
+#include <iostream>
+#include <stdio.h>
 #include <vector>
 #include <algorithm>
 
 // returns all valid L-shaped moves for a knight from (x, y) on the board
-vector<vector<int>> lMovement(vector<vector<int>> &board, int x, int y)
+vector<vector<int>> lMovement(const vector<vector<int>> &board, int x, int y)
 {
     int rows = board.size();
     int cols = board[0].size();

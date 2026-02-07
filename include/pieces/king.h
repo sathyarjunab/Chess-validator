@@ -2,10 +2,11 @@
 #define KING_CHECK_H
 
 #include <vector>
+#include "./../board.h"
 
-bool isKingInCheck(const std::vector<std::vector<int>>& board,
+bool isKingInCheck(const vector<std::vector<int>> &board,
                    int kingX,
                    int kingY,
-                   int kingColor);
+                   Color kingColor);
 
 #endif

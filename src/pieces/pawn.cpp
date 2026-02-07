@@ -54,6 +54,7 @@ vector<vector<int>> pawnMovement(vector<vector<int>> &board, int x, int y, int k
     return pawnValidMovesChecker(board, x, y, kingX, kingY, color, direction);
 }
 
+// This function checks the valid moves for a pawn and also checks if the move puts the king in check
 vector<vector<int>> pawnValidMovesChecker(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color, int direction)
 {
     vector<vector<int>> validMoves;

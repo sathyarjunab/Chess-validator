@@ -1,3 +1,5 @@
+#pragma once
+
 /*
 Color mapping:
 WHITE =  1

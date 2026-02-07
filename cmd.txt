@@ -1,6 +1,7 @@
 cmake -S . -B build
 cmake --build build
-./build/chess_validator
+./build/Debug/chess_validator
+
 
 
 
