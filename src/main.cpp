@@ -13,14 +13,14 @@ int main()
     cout << "Chess Validator Initialized\n";
 
     vector<vector<int>> board = {
-        {4, 2, 3, 5, 6, 3, 2, 4},
-        {1, 1, 1, 1, 1, 1, 1, 1},
-        {0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0},
-        {-1, -1, -1, -1, -1, -1, -1, -1},
-        {-4, -2, -3, -5, -6, -3, -2, -4}};
+        {ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK},
+        {PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN},
+        {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
+        {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
+        {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
+        {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
+        {-PAWN, -PAWN, -PAWN, -PAWN, -PAWN, -PAWN, -PAWN, -PAWN},
+        {-ROOK, -KNIGHT, -BISHOP, -QUEEN, -KING, -BISHOP, -KNIGHT, -ROOK}};
 
     vector<vector<int>> moves = pawnMovement(board, 6, 3, 7, 4, BLACK);
     vector<vector<int>> kmoves = knightMovement(board, 7, 1, 7, 4, BLACK);

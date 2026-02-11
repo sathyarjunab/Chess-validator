@@ -2,11 +2,18 @@
 #define KING_CHECK_H
 
 #include <vector>
+
 #include "./../board.h"
 
 bool isKingInCheck(const vector<std::vector<int>> &board,
                    int kingX,
                    int kingY,
                    Color kingColor);
+
+vector<vector<int>> kingMovement(const vector<vector<int>> &board,
+                                 int kingX,
+                                 int kingY,
+                                 Color kingColor,
+                                 bool kingMoved);
 
 #endif

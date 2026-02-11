@@ -77,7 +77,7 @@ vector<vector<int>> pawnValidMovesChecker(vector<vector<int>> &board, int x, int
                 }
 
                 bool isTwoSteps = abs(dx - x) == 2;
-                bool canMoveOneStep = board[x + direction][y] == 0;
+                bool canMoveOneStep = board[x + direction][y] == EMPTY;
                 bool isOpposite = false;
                 isOpposite = (board[dx][dy] > 0 && color == BLACK) || (board[dx][dy] < 0 && color == WHITE) ;
 
@@ -87,11 +87,11 @@ vector<vector<int>> pawnValidMovesChecker(vector<vector<int>> &board, int x, int
                 {
                     if (isTwoSteps)
                     {
-                        return canMoveOneStep && board[dx][dy] == 0 && ((color == WHITE && x == 1) || (color == BLACK && x == board.size() - 2));
+                        return canMoveOneStep && board[dx][dy] == EMPTY && ((color == WHITE && x == 1) || (color == BLACK && x == board.size() - 2));
                     }
                     else
                     {
-                        return canMoveOneStep && board[dx][dy] == 0;
+                        return canMoveOneStep && board[dx][dy] == EMPTY;
                     }
                 }
                 else
@@ -108,7 +108,7 @@ vector<vector<int>> pawnValidMovesChecker(vector<vector<int>> &board, int x, int
         int dy = move[1];
         vector<vector<int>> boardCopy = board;
         boardCopy[dx][dy] = board[x][y];
-        boardCopy[x][y] = 0;
+        boardCopy[x][y] = EMPTY;
 
         return !isKingInCheck(boardCopy, kingX, kingY, color); });
 

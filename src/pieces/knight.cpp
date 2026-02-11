@@ -52,11 +52,11 @@ vector<vector<int>> knightMovement(vector<vector<int>> &board, int x, int y, int
         int dx = move[0];
         int dy = move[1];
 
-        if (board[dx][dy] == 0 || (board[dx][dy] > 0 && color == BLACK) || (board[dx][dy] < 0 && color == WHITE))
+        if (board[dx][dy] == EMPTY || (board[dx][dy] > 0 && color == BLACK) || (board[dx][dy] < 0 && color == WHITE))
         {
             vector<vector<int>> copyBoard = board;
             copyBoard[dx][dy] = board[x][y];
-            copyBoard[x][y] = 0;
+            copyBoard[x][y] = EMPTY;
             if (isKingInCheck(copyBoard, kingX, kingY, color))
             {
                 continue;
