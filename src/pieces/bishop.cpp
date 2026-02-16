@@ -21,11 +21,11 @@ vector<vector<int>> bishopMovement(vector<vector<int>> &board, int x, int y, int
     vector<radialDirection> validMoves;
     vector<vector<int>> direction = {{-1, -1}, {-1, 1}, {1, 1}, {1, -1}};
 
-    rayScanFilter(validMoves, direction, board, x, y, color);
+    rayScanHitReturn(board, validMoves, direction, x, y, color);
 
     vector<vector<int>> safeMoves;
 
-    rayMovementSquares(safeMoves, validMoves, board, )
+    rayMovementSquares(board, safeMoves, validMoves, x, y, kingX, kingY, color);
 
-        return safeMoves;
+    return safeMoves;
 }

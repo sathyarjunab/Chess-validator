@@ -46,3 +46,7 @@ unordered_map<char, int> charToPiece =
     { 'q', -5 },
     { 'k', -6 }
 };
+
+progress:
+ 
+

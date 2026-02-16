@@ -36,8 +36,8 @@ RayScanReturn rayScan(const vector<vector<int>> &board,
                       int dx,
                       int dy);
 
-void rayScanFilter(vector<radialDirection> &validMoves, vector<vector<int>> &direction, vector<vector<int>> &board, int x, int y, Color color);
+void rayScanHitReturn(vector<vector<int>> &board, vector<radialDirection> &validMoves, vector<vector<int>> &direction, int x, int y, Color color);
 
-void rayMovementSquares(vector<vector<int>> &safeMoves, vector<radialDirection> &validMoves, vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color);
+void rayMovementSquares(vector<vector<int>> &board, vector<vector<int>> &safeMoves, vector<radialDirection> &validMoves, int x, int y, int kingX, int kingY, Color color);
 
 #endif

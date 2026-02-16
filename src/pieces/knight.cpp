@@ -2,7 +2,7 @@ using namespace std;
 
 #include "./../../include/pieces/knight.h"
 #include "./../../include/pieces/king.h"
-#include "./../../include/pieces/pawn.h" // TODO:remove this and move the color enum to a common place;
+#include "./../../include/board.h"
 
 #include <iostream>
 #include <stdio.h>

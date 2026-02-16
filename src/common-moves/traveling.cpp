@@ -41,7 +41,7 @@ RayScanReturn rayScan(const vector<vector<int>> &board,
     }
 }
 
-void rayScanFilter(vector<radialDirection> &validMoves, vector<vector<int>> direction, vector<vector<int>> board, int x, int y, Color color)
+void rayScanHitReturn(vector<vector<int>> &board, vector<radialDirection> &validMoves, vector<vector<int>> &direction, int x, int y, Color color)
 {
     // Loop through each diagonal direction and perform ray scanning
     for (const auto &d : direction)
@@ -70,11 +70,11 @@ void rayScanFilter(vector<radialDirection> &validMoves, vector<vector<int>> dire
     }
 }
 
-void rayMovementSquares(vector<vector<int>> &safeMoves, vector<radialDirection> validMoves, vector<vector<int>> board, int x, int y, int kingX, int kingY, Color color)
+void rayMovementSquares(vector<vector<int>> &board, vector<vector<int>> &safeMoves, vector<radialDirection> &validMoves, int x, int y, int kingX, int kingY, Color color)
 {
 
     // Loop through each valid move and check if it puts the king in check
-    for (radialDirection move : validMoves)
+    for (const radialDirection &move : validMoves)
     {
         int cX = x;
         int cY = y;
@@ -86,14 +86,18 @@ void rayMovementSquares(vector<vector<int>> &safeMoves, vector<radialDirection> 
             cX += move.dx;
             cY += move.dy;
 
-            vector<vector<int>> copyBoard = board;
-            copyBoard[cX][cY] = board[x][y];
-            copyBoard[x][y] = 0;
+            int temp = board[cX][cY];
+            board[cX][cY] = board[x][y];
+            board[x][y] = EMPTY;
 
-            if (!isKingInCheck(copyBoard, kingX, kingY, color))
+            if (!isKingInCheck(board, kingX, kingY, color))
             {
                 safeMoves.push_back({cX, cY});
             }
+
+            board[x][y] = board[cX][cY];
+            board[cX][cY] = temp;
+
             if ((cX == move.x && cY == move.y) || board[cX][cY] != 0)
             {
                 break;

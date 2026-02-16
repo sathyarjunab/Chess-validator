@@ -93,7 +93,7 @@ bool isKingInCheck(const vector<vector<int>> &board,
     return false;
 }
 
-vector<vector<int>> kingMovement(const vector<vector<int>> &board,
+vector<vector<int>> kingMovement(vector<vector<int>> &board,
                                  int kingX,
                                  int kingY,
                                  Color kingColor,
@@ -133,15 +133,16 @@ vector<vector<int>> kingMovement(const vector<vector<int>> &board,
         if ((board[mX][mY] > 0 && kingColor == WHITE) || (board[mX][mY] < 0 && kingColor == BLACK))
             continue;
 
-        // check if, if you make the current move does that move bring the king to check
+        // check if, if you make the current move, does that move bring the king to check.
 
+        int temp = board[mX][mY];
         board[mX][mY] = board[kingX][kingY];
         board[kingX][kingY] = EMPTY;
         if (isKingInCheck(board, mX, mY, kingColor))
             continue;
 
         board[kingX][kingY] = board[mX][mY];
-        board[mX][mY] = EMPTY;
+        board[mX][mY] = temp;
 
         validMoves.push_back({mX, mY});
     }
