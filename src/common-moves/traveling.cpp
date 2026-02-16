@@ -1,8 +1,8 @@
 using namespace std;
 
 // .h file imports "./../../include/rules/"
-#include "./../../include/common-moves/traveling.h"
 #include "./../../include/board.h"
+#include "./../../include/common-moves/traveling.h"
 #include "./../../include/pieces/king.h"
 
 using namespace std;

@@ -19,13 +19,15 @@ vector<vector<int>> bishopMovement(vector<vector<int>> &board, int x, int y, int
     // else then we can calculate the valid moves for the bishop
 
     vector<radialDirection> validMoves;
-    vector<vector<int>> direction = {{-1, -1}, {-1, 1}, {1, 1}, {1, -1}};
-
-    rayScanHitReturn(board, validMoves, direction, x, y, color);
-
     vector<vector<int>> safeMoves;
+    vector<vector<int>> directions = {{-1, -1}, {-1, 1}, {1, 1}, {1, -1}};
 
-    rayMovementSquares(board, safeMoves, validMoves, x, y, kingX, kingY, color);
+    rayScanHitReturn(board, validMoves, directions, x, y, color);
+
+    if (validMoves.size() > 0)
+    {
+        rayMovementSquares(board, safeMoves, validMoves, x, y, kingX, kingY, color);
+    }
 
     return safeMoves;
 }

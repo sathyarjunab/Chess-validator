@@ -48,5 +48,11 @@ unordered_map<char, int> charToPiece =
 };
 
 progress:
- 
+
+1. check the rook for the correctness of its implementation 
+2. also check the function it calls
+
+tried implemented queen moves 
+3. if done check that to 
+
 
