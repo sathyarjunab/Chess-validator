@@ -5,11 +5,6 @@
 
 #include "./../board.h"
 
-bool isKingInCheck(const vector<std::vector<int>> &board,
-                   int kingX,
-                   int kingY,
-                   Color kingColor);
-
 vector<vector<int>> kingMovement(vector<vector<int>> &board,
                                  int kingX,
                                  int kingY,

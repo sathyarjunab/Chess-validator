@@ -6,11 +6,12 @@ using namespace std;
 
 #include "./../include/board.h"
 #include "./../include/pieces/king.h"
+#include "./../include/helper/helper.h"
 #include "./../include/common-moves/traveling.h"
 
 vector<vector<int>> queenMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color)
 {
-    if (isKingInCheck(board, kingX, kingY, color))
+    if (isAttacked(board, kingX, kingY, color))
     {
         // TODO: check if the game is over by checkmate or stalemate
     }

@@ -8,6 +8,7 @@ using namespace std;
 #include "./../include/board.h"
 #include "./../include/common-moves/traveling.h"
 #include "./../include/pieces/king.h"
+#include "./../include/helper/helper.h"
 
 using namespace std;
 
@@ -94,7 +95,7 @@ void rayMovementSquares(vector<vector<int>> &board, vector<vector<int>> &safeMov
             board[cX][cY] = board[x][y];
             board[x][y] = EMPTY;
 
-            if (!isKingInCheck(board, kingX, kingY, color))
+            if (!isAttacked(board, kingX, kingY, color))
             {
                 safeMoves.push_back({cX, cY});
             }

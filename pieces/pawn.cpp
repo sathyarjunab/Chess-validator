@@ -2,6 +2,8 @@ using namespace std;
 
 #include "./../include/pieces/pawn.h"
 #include "./../include/pieces/king.h"
+#include "./../include/helper/helper.h"
+#include "./../include/helper/helper.h"
 
 #include <stdio.h>
 #include <iostream>
@@ -21,7 +23,7 @@ vector<vector<int>> pawnMovement(vector<vector<int>> &board, int x, int y, int k
 {
 
     vector<vector<int>> validMoves;
-    if (isKingInCheck(board, kingX, kingY, color))
+    if (isAttacked(board, kingX, kingY, color))
     {
         // check if the game is over by checkmate or stalemate
     }
@@ -110,7 +112,7 @@ vector<vector<int>> pawnValidMovesChecker(vector<vector<int>> &board, int x, int
         boardCopy[dx][dy] = board[x][y];
         boardCopy[x][y] = EMPTY;
 
-        return !isKingInCheck(boardCopy, kingX, kingY, color); });
+        return !isAttacked(boardCopy, kingX, kingY, color); });
 
     return filteredMoves;
 }
