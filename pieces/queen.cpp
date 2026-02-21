@@ -4,9 +4,9 @@ using namespace std;
 #include <stdio.h>
 #include <vector>
 
-#include "./../../include/board.h"
-#include "./../../include/pieces/king.h"
-#include "./../../include/common-moves/traveling.h"
+#include "./../include/board.h"
+#include "./../include/pieces/king.h"
+#include "./../include/common-moves/traveling.h"
 
 vector<vector<int>> queenMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color)
 {

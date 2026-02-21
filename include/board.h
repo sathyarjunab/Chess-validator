@@ -1,5 +1,7 @@
 #pragma once
 
+#include <unordered_map>
+
 /*
 Color mapping:
 WHITE =  1
@@ -21,3 +23,6 @@ enum PieceType
     QUEEN = 5,
     KING = 6
 };
+
+// Only declare in header
+extern const std::unordered_map<char, int> piecesToNum;

@@ -1,8 +1,8 @@
 using namespace std;
 
-#include "./../../include/pieces/knight.h"
-#include "./../../include/pieces/king.h"
-#include "./../../include/board.h"
+#include "./../include/pieces/knight.h"
+#include "./../include/pieces/king.h"
+#include "./../include/board.h"
 
 #include <iostream>
 #include <stdio.h>

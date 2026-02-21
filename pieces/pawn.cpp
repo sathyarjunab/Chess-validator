@@ -1,7 +1,7 @@
 using namespace std;
 
-#include "./../../include/pieces/pawn.h"
-#include "./../../include/pieces/king.h"
+#include "./../include/pieces/pawn.h"
+#include "./../include/pieces/king.h"
 
 #include <stdio.h>
 #include <iostream>

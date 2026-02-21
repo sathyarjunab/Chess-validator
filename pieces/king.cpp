@@ -1,10 +1,10 @@
 using namespace std;
 
 // .h file imports "./../../include/pieces/"
-#include "./../../include/pieces/king.h"
-#include "./../../include/common-moves/traveling.h"
-#include "./../../include/pieces/knight.h"
-#include "./../../include/board.h"
+#include "./../include/pieces/king.h"
+#include "./../include/common-moves/traveling.h"
+#include "./../include/pieces/knight.h"
+#include "./../include/board.h"
 
 bool isKingInCheck(const vector<vector<int>> &board,
                    int kingX,

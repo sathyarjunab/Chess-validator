@@ -3,6 +3,8 @@
 
 using namespace std;
 
+#include "./../board.h"
+
 #include <vector>
 
 enum Direction

@@ -39,3 +39,12 @@ compile_commands.json
 # OS files
 .DS_Store
 Thumbs.db
+
+# node_modules ignore
+node_modules/
+*.node
+*.pdb
+*.ilk
+*.exp
+*.lib
+.vs/
