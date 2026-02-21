@@ -1,26 +1,51 @@
-#pragma once
+#ifndef BOARD_CONVERTOR_H
+#define BOARD_CONVERTOR_H
 
-#include <vector>
 #include <string>
+#include <vector>
+#include <unordered_map>
 
 #include "./../board.h"
 
-/*
-Assumes Color enum and piece constants (EMPTY, etc.)
-are defined in board.h
-*/
+// --------------------
+// Utility Functions
+// --------------------
 
-using std::string;
-using std::vector;
+std::vector<std::string> split(const std::string &str, char ch);
+
+// --------------------
+// FEN Conversion
+// --------------------
 
 struct resBoard
 {
     vector<vector<int>> board;
     Color color;
+    bool draw;
 };
 
-vector<string> split(string str, char ch);
+resBoard FENToVector(const std::string &FEN);
 
-bool isNumber(char c);
+// --------------------
+// Algebraic Conversion
+// --------------------
 
-resBoard FENToVector(const string &FEN);
+std::vector<std::string>
+vectorToAlgebraicNotation(const std::vector<std::vector<int>> &vec);
+
+struct CoOrdinates
+{
+    int x;
+    int y;
+};
+
+CoOrdinates algebraicNotationToVector(const std::string algebraicNotation);
+
+// --------------------
+// Lookup Tables
+// --------------------
+
+extern const std::unordered_map<int, std::string> indexToAlgebraicNotation;
+extern const std::unordered_map<std::string, int> algebraicNotationToIndex;
+
+#endif

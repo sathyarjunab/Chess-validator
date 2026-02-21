@@ -13,7 +13,6 @@ bool isKingInCheck(const vector<std::vector<int>> &board,
 vector<vector<int>> kingMovement(const vector<vector<int>> &board,
                                  int kingX,
                                  int kingY,
-                                 Color kingColor,
-                                 bool kingMoved);
+                                 Color kingColor);
 
 #endif

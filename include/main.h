@@ -1,12 +1,12 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef CHESS_VALIDATOR_H
+#define CHESS_VALIDATOR_H
 
+#include <string>
 #include <vector>
-#include "./../include/pieces/pawn.h"
-#include "./../include/pieces/knight.h"
-#include "./../include/pieces/king.h"
 
-/* program entry */
-int main();
+std::vector<std::string> giveMeMove(
+    const std::string &fen,
+    const std::string &pieceMove,
+    const std::string &kingPosition);
 
 #endif

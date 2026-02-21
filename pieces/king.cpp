@@ -96,8 +96,7 @@ bool isKingInCheck(const vector<vector<int>> &board,
 vector<vector<int>> kingMovement(vector<vector<int>> &board,
                                  int kingX,
                                  int kingY,
-                                 Color kingColor,
-                                 bool kingMoved)
+                                 Color kingColor)
 {
 
     vector<vector<int>> possibleDirection = {
@@ -111,14 +110,14 @@ vector<vector<int>> kingMovement(vector<vector<int>> &board,
         {1, -1},
     };
 
-    if (!kingMoved)
-    {
-        int x = kingColor == WHITE ? 0 : 7;
-        int y = 4;
+    // if (!kingMoved)
+    // {
+    //     int x = kingColor == WHITE ? 0 : 7;
+    //     int y = 4;
 
-        // possibleDirection.push_back({x,})
-        // both long castling and short castling should be implemented
-    }
+    // possibleDirection.push_back({x,})
+    // both long castling and short castling should be implemented
+    // }
 
     vector<vector<int>> validMoves;
 
