@@ -1,5 +1,9 @@
 using namespace std;
 
+#include <stdio.h>
+#include <iostream>
+#include <vector>
+
 // .h file imports
 #include "./../include/board.h"
 #include "./../include/common-moves/traveling.h"
@@ -57,7 +61,7 @@ void rayScanHitReturn(vector<vector<int>> &board, vector<radialDirection> &valid
             {
                 validMoves.push_back({dx, dy, d[0], d[1]});
             }
-            else
+            else if (hit.steps > 1)
             {
                 validMoves.push_back({hit.prevXIndex, hit.prevYIndex, d[0], d[1]});
             }

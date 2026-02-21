@@ -39,7 +39,7 @@ struct CoOrdinates
     int y;
 };
 
-CoOrdinates algebraicNotationToVector(const std::string algebraicNotation);
+CoOrdinates algebraicNotationToVector(const std::string &algebraicNotation);
 
 // --------------------
 // Lookup Tables

@@ -27,18 +27,13 @@ int main()
         {-PAWN, -PAWN, -PAWN, -PAWN, -PAWN, -PAWN, -PAWN, -PAWN},
         {-ROOK, -KNIGHT, -BISHOP, -QUEEN, -KING, -BISHOP, -KNIGHT, -ROOK}};
     // resBoard data = FENToVector("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-
-    // cout << data.board[0][0] << " " << data.board[0][1] << " " << data.board[0][2] << " " << data.board[0][3] << " " << data.board[0][4] << " " << data.board[0][5] << " " << data.board[0][6] << " " << data.board[0][7] << endl;
-
     return 0;
 };
 
-vector<string> giveMeMove(string &fen, string &pieceMove, string &kingPosition)
+vector<string> giveMeMove(const string &fen, const string &pieceMove, const string &kingPosition)
 {
     auto [x, y] = algebraicNotationToVector(pieceMove);
     auto [kx, ky] = algebraicNotationToVector(kingPosition);
-
-    cout << x << " " << y << "testing log" << endl;
 
     auto [board, activeColor, won] = FENToVector(fen);
 
@@ -73,6 +68,7 @@ vector<string> giveMeMove(string &fen, string &pieceMove, string &kingPosition)
     {
     case PAWN:
     {
+        cout << "pawn" << endl;
         vector<vector<int>> validMoves = pawnMovement(board, x, y, kx, ky, activeColor);
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;
@@ -80,6 +76,7 @@ vector<string> giveMeMove(string &fen, string &pieceMove, string &kingPosition)
 
     case KNIGHT:
     {
+        cout << "knight" << endl;
         vector<vector<int>> validMoves = knightMovement(board, x, y, kx, ky, activeColor);
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;
@@ -87,6 +84,7 @@ vector<string> giveMeMove(string &fen, string &pieceMove, string &kingPosition)
 
     case BISHOP:
     {
+        cout << "bishop" << endl;
         vector<vector<int>> validMoves = bishopMovement(board, x, y, kx, ky, activeColor);
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;
@@ -94,6 +92,7 @@ vector<string> giveMeMove(string &fen, string &pieceMove, string &kingPosition)
 
     case ROOK:
     {
+        cout << "rook" << endl;
         vector<vector<int>> validMoves = rookMovement(board, x, y, kx, ky, activeColor);
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;
@@ -101,6 +100,7 @@ vector<string> giveMeMove(string &fen, string &pieceMove, string &kingPosition)
 
     case QUEEN:
     {
+        cout << "Queen" << endl;
         vector<vector<int>> validMoves = queenMovement(board, x, y, kx, ky, activeColor);
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;
@@ -108,6 +108,7 @@ vector<string> giveMeMove(string &fen, string &pieceMove, string &kingPosition)
 
     case KING:
     {
+        cout << "king" << endl;
         vector<vector<int>> validMoves = kingMovement(board, kx, ky, activeColor);
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;

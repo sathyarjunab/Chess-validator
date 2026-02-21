@@ -32,12 +32,6 @@ const unordered_map<string, int> algebraicNotationToIndex = {
     {"a", 7},
 };
 
-struct CoOrdinates
-{
-    int x;
-    int y;
-};
-
 resBoard FENToVector(const string &FEN)
 {
     vector<string> parts = split(FEN, ' ');
@@ -83,13 +77,17 @@ resBoard FENToVector(const string &FEN)
                     throw runtime_error("Invalid FEN digit");
 
                 col += ch - '0';
-                if (col >= 8)
+                if (col > 8)
+                {
                     throw runtime_error("Column overflow");
+                }
             }
             else
             {
-                if (col >= 8)
+                if (col > 8)
+                {
                     throw runtime_error("Column overflow");
+                }
 
                 auto itr = piecesToNum.find(ch);
 
@@ -108,7 +106,7 @@ resBoard FENToVector(const string &FEN)
 
     // TODO: NEED TO HANDLE OTHER PART OF THE FEN AFTER ACTIVE COLOR
 
-        return {board, color};
+    return {board, color};
 }
 
 vector<string> vectorToAlgebraicNotation(const vector<vector<int>> &vec)
@@ -153,12 +151,12 @@ CoOrdinates algebraicNotationToVector(const string &algebraicNotation)
     if (itr1 == algebraicNotationToIndex.end())
         throw runtime_error("Invalid algebraic notation");
 
-    int x = itr1->second;
+    int y = itr1->second;
 
     if (algebraicNotation[1] < '1' || algebraicNotation[1] > '8')
         throw runtime_error("Invalid algebraic notation");
 
-    int y = algebraicNotation[1] - '1';
+    int x = algebraicNotation[1] - '1';
 
     return {x, y};
 }

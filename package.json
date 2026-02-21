@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/sathyarjunab/Chess-validator#readme",
   "devDependencies": {
-    "cmake-js": "^8.0.0"
+    "cmake-js": "^8.0.0",
+    "node-gyp": "^12.2.0"
   }
 }
