@@ -56,6 +56,8 @@ AttackerReturn isAttacked(vector<vector<int>> &board,
         }
     }
 
+    cout << "1." << numberOfAttackers << endl;
+
     // Rook / Queen directions
     static const int directions[8][2] = {
         {1, 0}, {-1, 0}, {0, 1}, {0, -1}, // orthogonal
@@ -86,6 +88,8 @@ AttackerReturn isAttacked(vector<vector<int>> &board,
             }
         }
     }
+
+    cout << "2." << numberOfAttackers << endl;
 
     // pawn attack
     if (pieceColor == WHITE)
@@ -124,6 +128,8 @@ AttackerReturn isAttacked(vector<vector<int>> &board,
         }
     }
 
+    cout << "3." << numberOfAttackers << endl;
+
     if (wantToCheckKingAttack)
     {
         static const int directions[8][2] = {
@@ -146,13 +152,16 @@ AttackerReturn isAttacked(vector<vector<int>> &board,
             }
         }
     }
+    cout << "4." << numberOfAttackers << endl;
 
     if (numberOfAttackers == 0)
     {
+        cout << "where is it ";
         return {false, numberOfAttackers, attacker};
     }
     else
     {
+        cout << "where is it ";
         return {true, numberOfAttackers, attacker};
     }
 }

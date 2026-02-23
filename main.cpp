@@ -56,6 +56,8 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
         cout << endl;
     }
 
+    cout << x << "" << y << endl;
+
     int piece = board[x][y];
 
     vector<int> attackerKingPosition = activeColor == WHITE ? blackKingPosition : whiteKingPosition;
@@ -67,6 +69,8 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
     {
         // if he is in attack lets check if some one as won
         result mate = checkForMate(board, kx, ky, activeColor, true, attackerKingPosition[0], attackerKingPosition[1]);
+
+        cout << "came out of the checkmate function" << endl;
 
         if (mate.inCheckMate)
         {
