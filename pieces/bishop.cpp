@@ -3,6 +3,7 @@ using namespace std;
 #include "./../include/common-moves/traveling.h"
 #include "./../include/board.h"
 #include "./../include/helper/helper.h"
+#include "./../include/pieces/king.h"
 
 #include <stdio.h>
 #include <iostream>
@@ -12,7 +13,7 @@ using namespace std;
 vector<vector<int>> bishopMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color)
 {
 
-    if (isAttacked(board, kingX, kingY, color))
+    if (isKingInCheck(board, kingX, kingY, color))
     {
         // check if the game is over by checkmate or stalemate
     }

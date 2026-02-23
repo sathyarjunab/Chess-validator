@@ -56,7 +56,9 @@ resBoard FENToVector(const string &FEN)
         return {
             {},
             color,
-            true};
+            true,
+            {},
+            {}};
     }
 
     vector<string> ranks = split(placement, '/');
@@ -64,6 +66,9 @@ resBoard FENToVector(const string &FEN)
         throw runtime_error("Invalid FEN ranks");
 
     vector<vector<int>> board(8, vector<int>(8, EMPTY));
+
+    vector<int> whiteKingPosition;
+    vector<int> blackKingPosition;
 
     for (int i = 0; i < 8; i++)
     {
@@ -96,6 +101,12 @@ resBoard FENToVector(const string &FEN)
 
                 board[i][col] = itr->second;
 
+                if (ch == 'K')
+                    whiteKingPosition = {i, col};
+
+                if (ch == 'k')
+                    blackKingPosition = {i, col};
+
                 col++;
             }
         }
@@ -106,7 +117,7 @@ resBoard FENToVector(const string &FEN)
 
     // TODO: NEED TO HANDLE OTHER PART OF THE FEN AFTER ACTIVE COLOR
 
-    return {board, color};
+    return {board, color, false, whiteKingPosition, blackKingPosition};
 }
 
 vector<string> vectorToAlgebraicNotation(const vector<vector<int>> &vec)

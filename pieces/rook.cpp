@@ -11,7 +11,7 @@ using namespace std;
 
 vector<vector<int>> rookMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color)
 {
-    if (isAttacked(board, kingX, kingY, color))
+    if (isKingInCheck(board, kingX, kingY, color))
     {
         // TODO: check if the match as been won by the opponent by checkmate or its a stalemate
     }

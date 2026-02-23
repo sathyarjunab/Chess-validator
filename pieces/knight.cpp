@@ -38,7 +38,7 @@ vector<vector<int>> lMovement(const vector<vector<int>> &board, int x, int y)
 vector<vector<int>> knightMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color)
 {
     vector<vector<int>> validMoves;
-    if (isAttacked(board, kingX, kingY, color))
+    if (isKingInCheck(board, kingX, kingY, color))
     {
         // check if the game is over by checkmate or stalemate
     }
@@ -58,7 +58,7 @@ vector<vector<int>> knightMovement(vector<vector<int>> &board, int x, int y, int
             vector<vector<int>> copyBoard = board;
             copyBoard[dx][dy] = board[x][y];
             copyBoard[x][y] = EMPTY;
-            if (isAttacked(copyBoard, kingX, kingY, color))
+            if (isKingInCheck(copyBoard, kingX, kingY, color))
             {
                 continue;
             }

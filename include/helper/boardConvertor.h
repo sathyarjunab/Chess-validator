@@ -22,6 +22,8 @@ struct resBoard
     vector<vector<int>> board;
     Color color;
     bool draw;
+    vector<int> whiteKingPosition;
+    vector<int> blackKingPosition;
 };
 
 resBoard FENToVector(const std::string &FEN);

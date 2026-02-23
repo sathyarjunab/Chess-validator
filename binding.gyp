@@ -13,6 +13,7 @@
         "pieces/rook.cpp",
         "main.cpp",
         "helper/boardConvertor.cpp",
+        "helper/helper.cpp",
         "common-moves/traveling.cpp",
       ],
       "include_dirs": [

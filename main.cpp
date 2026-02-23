@@ -2,10 +2,11 @@ using namespace std;
 // piece includes
 #include "./include/pieces/pawn.h"
 #include "./include/pieces/knight.h"
-#include "./include/pieces/king.h"
 #include "./include/pieces/bishop.h"
 #include "./include/pieces/rook.h"
 #include "./include/pieces/queen.h"
+#include "./include/helper/helper.h"
+#include "./include/pieces/king.h"
 
 #include "./include/helper/boardConvertor.h"
 
@@ -35,11 +36,11 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
     auto [x, y] = algebraicNotationToVector(pieceMove);
     auto [kx, ky] = algebraicNotationToVector(kingPosition);
 
-    auto [board, activeColor, won] = FENToVector(fen);
+    auto [board, activeColor, draw, whiteKingPosition, blackKingPosition] = FENToVector(fen);
 
-    if (won)
+    if (draw)
     {
-        return {"Game Over"};
+        return {"DRAW"};
     }
 
     // testing logging the complete board to check what it will give
@@ -56,6 +57,22 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
     }
 
     int piece = board[x][y];
+
+    vector<int> attackerKingPosition = activeColor == WHITE ? blackKingPosition : whiteKingPosition;
+
+    //  check if the king is in attack
+    bool inCheck = isKingInCheck(board, kx, ky, activeColor);
+
+    if (inCheck)
+    {
+        // if he is in attack lets check if some one as won
+        result mate = checkForMate(board, kx, ky, activeColor, true, attackerKingPosition[0], attackerKingPosition[1]);
+
+        if (mate.inCheckMate)
+        {
+            return {mate.whoWon == WHITE ? "WHITE WON" : "BLACK WON"};
+        }
+    }
 
     if (piece == EMPTY)
     {

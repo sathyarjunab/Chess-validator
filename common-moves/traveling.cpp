@@ -95,7 +95,7 @@ void rayMovementSquares(vector<vector<int>> &board, vector<vector<int>> &safeMov
             board[cX][cY] = board[x][y];
             board[x][y] = EMPTY;
 
-            if (!isAttacked(board, kingX, kingY, color))
+            if (!isKingInCheck(board, kingX, kingY, color))
             {
                 safeMoves.push_back({cX, cY});
             }
