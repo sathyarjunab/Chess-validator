@@ -208,9 +208,9 @@ result checkForMate(vector<vector<int>> &board, int kingX, int kingY, Color king
         // 1. take the piece that is attacking the king
         AttackerReturn isHunterBeingHunted = isAttacked(board, kingAttackInfo.attackers[0].x, kingAttackInfo.attackers[0].y, opponentColor, false);
 
-        // TODO: before taking the piece that is attacking the king, check if the king will come under attack again because of this move
+        vector<AttackerDetails> legalAttacker = legallyAttacked(board, kingAttackInfo.attackers[0].x, kingAttackInfo.attackers[0].y, opponentColor, opponentsKingX, opponentsKingY, kingAttackInfo.attackers);
 
-        if (isHunterBeingHunted.isInAttack && kingAttackInfo.attackers.size() >= 1)
+        if (isHunterBeingHunted.isInAttack && legalAttacker.size() > 0)
         {
             return {false, {}};
         }
