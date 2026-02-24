@@ -17,7 +17,8 @@ vector<vector<int>> pawnMovement(
     int y,
     int kingX,
     int kingY,
-    Color color);
+    Color color,
+    vector<int> &enPassantCoordinates);
 
 /**
  * Internal helper to validate pawn moves
@@ -30,6 +31,7 @@ vector<vector<int>> pawnValidMovesChecker(
     int kingX,
     int kingY,
     Color color,
-    int direction);
+    int direction,
+    vector<int> &enPassantCoordinates);
 
 #endif // PAWN_H

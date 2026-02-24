@@ -16,18 +16,11 @@ using namespace std;
 // bottom black
 
 // TODO: HANDLE PROMOTION AND EN PASSANT
-// TODO: CHECK IF SOME ONE AS WON THE GAME BY CHECKMATE
-// TODO: HANDLE STALEMATE
 
-vector<vector<int>> pawnMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color)
+vector<vector<int>> pawnMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color, vector<int> &enPassantCoordinates)
 {
 
     vector<vector<int>> validMoves;
-    if (isKingInCheck(board, kingX, kingY, color))
-    {
-        // check if the game is over by checkmate or stalemate
-    }
-    // else then we can calculate the valid moves for the pawn
 
     int left = y - 1;
     int right = y + 1;
@@ -53,11 +46,11 @@ vector<vector<int>> pawnMovement(vector<vector<int>> &board, int x, int y, int k
         direction = -1;
     }
 
-    return pawnValidMovesChecker(board, x, y, kingX, kingY, color, direction);
+    return pawnValidMovesChecker(board, x, y, kingX, kingY, color, direction, enPassantCoordinates);
 }
 
 // This function checks the valid moves for a pawn and also checks if the move puts the king in check
-vector<vector<int>> pawnValidMovesChecker(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color, int direction)
+vector<vector<int>> pawnValidMovesChecker(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color, int direction, vector<int> &enPassantCoordinates)
 {
     vector<vector<int>> validMoves;
     vector<vector<int>> possibleMoves = {{x + (1 * direction), y}, {x + (2 * direction), y}, {x + direction, y - 1}, {x + direction, y + 1}};
@@ -114,5 +107,15 @@ vector<vector<int>> pawnValidMovesChecker(vector<vector<int>> &board, int x, int
 
         return !isKingInCheck(boardCopy, kingX, kingY, color); });
 
+    // check for en Passant
+    int opponentPawn = color == WHITE ? -PAWN : PAWN;
+    if ((board[x][y + 1] == opponentPawn) && enPassantCoordinates[0] == x + direction && enPassantCoordinates[0] == y + 1)
+    {
+        validMoves.push_back(enPassantCoordinates);
+    }
+    if ((board[x][y - 1] == opponentPawn) && enPassantCoordinates[0] == x + direction && enPassantCoordinates[0] == y - 1)
+    {
+        validMoves.push_back(enPassantCoordinates);
+    }
     return filteredMoves;
 }

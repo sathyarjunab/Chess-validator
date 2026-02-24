@@ -117,7 +117,7 @@ resBoard FENToVector(const string &FEN)
 
     // TODO: NEED TO HANDLE OTHER PART OF THE FEN AFTER ACTIVE COLOR
 
-    return {board, color, false, whiteKingPosition, blackKingPosition};
+    return {board, color, false, whiteKingPosition, blackKingPosition, enPassant};
 }
 
 vector<string> vectorToAlgebraicNotation(const vector<vector<int>> &vec)

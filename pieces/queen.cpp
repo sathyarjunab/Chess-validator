@@ -11,11 +11,6 @@ using namespace std;
 
 vector<vector<int>> queenMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color)
 {
-    if (isKingInCheck(board, kingX, kingY, color))
-    {
-        // TODO: check if the game is over by checkmate or stalemate
-    }
-
     vector<vector<int>> directions = {
         {1, 0}, {-1, 0}, {0, 1}, {0, -1}, // orthogonal
         {1, 1},

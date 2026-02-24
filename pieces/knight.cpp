@@ -38,12 +38,6 @@ vector<vector<int>> lMovement(const vector<vector<int>> &board, int x, int y)
 vector<vector<int>> knightMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color)
 {
     vector<vector<int>> validMoves;
-    if (isKingInCheck(board, kingX, kingY, color))
-    {
-        // check if the game is over by checkmate or stalemate
-    }
-    // else then we can calculate the valid moves for the knight
-
     vector<vector<int>> possibleMoves = lMovement(board, x, y);
 
     vector<vector<int>> knightMoves;

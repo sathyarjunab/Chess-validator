@@ -36,7 +36,9 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
     auto [x, y] = algebraicNotationToVector(pieceMove);
     auto [kx, ky] = algebraicNotationToVector(kingPosition);
 
-    auto [board, activeColor, draw, whiteKingPosition, blackKingPosition] = FENToVector(fen);
+    auto [board, activeColor, draw, whiteKingPosition, blackKingPosition, enPassant] = FENToVector(fen);
+
+    auto [enPassantX, enPassantY] = algebraicNotationToVector(enPassant);
 
     if (draw)
     {

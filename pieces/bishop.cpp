@@ -13,12 +13,6 @@ using namespace std;
 vector<vector<int>> bishopMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color)
 {
 
-    if (isKingInCheck(board, kingX, kingY, color))
-    {
-        // check if the game is over by checkmate or stalemate
-    }
-    // else then we can calculate the valid moves for the bishop
-
     vector<radialDirection> validMoves;
     vector<vector<int>> safeMoves;
     vector<vector<int>> directions = {{-1, -1}, {-1, 1}, {1, 1}, {1, -1}};
