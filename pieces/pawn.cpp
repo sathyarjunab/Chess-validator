@@ -17,7 +17,7 @@ using namespace std;
 
 // TODO: HANDLE PROMOTION AND EN PASSANT
 
-vector<vector<int>> pawnMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color, vector<int> &enPassantCoordinates)
+vector<vector<int>> pawnMovement(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color, const vector<int> &enPassantCoordinates)
 {
 
     vector<vector<int>> validMoves;
@@ -50,7 +50,7 @@ vector<vector<int>> pawnMovement(vector<vector<int>> &board, int x, int y, int k
 }
 
 // This function checks the valid moves for a pawn and also checks if the move puts the king in check
-vector<vector<int>> pawnValidMovesChecker(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color, int direction, vector<int> &enPassantCoordinates)
+vector<vector<int>> pawnValidMovesChecker(vector<vector<int>> &board, int x, int y, int kingX, int kingY, Color color, int direction, const vector<int> &enPassantCoordinates)
 {
     vector<vector<int>> validMoves;
     vector<vector<int>> possibleMoves = {{x + (1 * direction), y}, {x + (2 * direction), y}, {x + direction, y - 1}, {x + direction, y + 1}};
@@ -111,11 +111,11 @@ vector<vector<int>> pawnValidMovesChecker(vector<vector<int>> &board, int x, int
     int opponentPawn = color == WHITE ? -PAWN : PAWN;
     if ((board[x][y + 1] == opponentPawn) && enPassantCoordinates[0] == x + direction && enPassantCoordinates[0] == y + 1)
     {
-        validMoves.push_back(enPassantCoordinates);
+        filteredMoves.push_back(enPassantCoordinates);
     }
     if ((board[x][y - 1] == opponentPawn) && enPassantCoordinates[0] == x + direction && enPassantCoordinates[0] == y - 1)
     {
-        validMoves.push_back(enPassantCoordinates);
+        filteredMoves.push_back(enPassantCoordinates);
     }
     return filteredMoves;
 }

@@ -58,7 +58,8 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
         cout << endl;
     }
 
-    cout << x << "" << y << endl;
+    cout << "given x,y" << x << " " << y << endl;
+    cout << "en-Passant-co" << enPassantX << " " << enPassantY << endl;
 
     int piece = board[x][y];
 
@@ -92,7 +93,7 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
     case PAWN:
     {
         cout << "pawn" << endl;
-        vector<vector<int>> validMoves = pawnMovement(board, x, y, kx, ky, activeColor);
+        vector<vector<int>> validMoves = pawnMovement(board, x, y, kx, ky, activeColor, {enPassantX, enPassantY});
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;
     }
