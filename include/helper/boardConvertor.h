@@ -25,6 +25,7 @@ struct resBoard
     vector<int> whiteKingPosition;
     vector<int> blackKingPosition;
     string enPassant;
+    string castlingRights;
 };
 
 resBoard FENToVector(const std::string &FEN);

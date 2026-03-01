@@ -117,7 +117,7 @@ resBoard FENToVector(const string &FEN)
 
     // TODO: NEED TO HANDLE OTHER PART OF THE FEN AFTER ACTIVE COLOR
 
-    return {board, color, false, whiteKingPosition, blackKingPosition, enPassant};
+    return {board, color, false, whiteKingPosition, blackKingPosition, enPassant, castlingRights};
 }
 
 vector<string> vectorToAlgebraicNotation(const vector<vector<int>> &vec)
@@ -176,6 +176,8 @@ vector<string> split(const string &str, char ch)
 {
     string acc = "";
     vector<string> returnAnsString;
+    if (str.size() == 0)
+        return {""};
 
     for (char val : str)
     {

@@ -122,9 +122,9 @@ bool isKingInCheck(const vector<vector<int>> &board,
 vector<vector<int>> kingMovement(vector<vector<int>> &board,
                                  int kingX,
                                  int kingY,
-                                 Color kingColor)
+                                 Color kingColor,
+                                 string castlingRights)
 {
-
     vector<vector<int>> possibleDirection = {
         {-1, 0},
         {1, 0},
@@ -174,6 +174,34 @@ vector<vector<int>> kingMovement(vector<vector<int>> &board,
         validMoves.push_back({mX, mY});
     }
 
+    if (castlingRights.size() > 0)
+    {
+        for (char castlingPawn : castlingRights)
+        {
+            switch (castlingPawn)
+            {
+            case 'K':
+                if (kingColor == WHITE)
+                    validMoves.push_back({0, 6});
+                break;
+            case 'k':
+                if (kingColor == BLACK)
+                    validMoves.push_back({7, 6});
+                break;
+            case 'Q':
+                if (kingColor == WHITE)
+                    validMoves.push_back({0, 1});
+                break;
+            case 'q':
+                if (kingColor == BLACK)
+                    validMoves.push_back({7, 1});
+                break;
+            default:
+                break;
+            }
+        }
+    }
+
     return validMoves;
 }
 
@@ -189,8 +217,8 @@ result checkForMate(vector<vector<int>> &board, int kingX, int kingY, Color king
             return {false, {}};
 
         // lets see if there are any legal moves for king if yes then no one has won
-
-        vector<vector<int>> moves = kingMovement(board, kingX, kingY, kingColor);
+        // and since when the king is in check we can't let it castle
+        vector<vector<int>> moves = kingMovement(board, kingX, kingY, kingColor, "-");
         // since there are legal moves available then no one has won
         if (moves.size() > 0)
             return {false, {}};

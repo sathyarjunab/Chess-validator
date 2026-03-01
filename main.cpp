@@ -7,6 +7,7 @@ using namespace std;
 #include "./include/pieces/queen.h"
 #include "./include/helper/helper.h"
 #include "./include/pieces/king.h"
+#include "./include/main.h"
 
 #include "./include/helper/boardConvertor.h"
 
@@ -36,9 +37,17 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
     auto [x, y] = algebraicNotationToVector(pieceMove);
     auto [kx, ky] = algebraicNotationToVector(kingPosition);
 
-    auto [board, activeColor, draw, whiteKingPosition, blackKingPosition, enPassant] = FENToVector(fen);
+    auto [board, activeColor, draw, whiteKingPosition, blackKingPosition, enPassant, castlingRights] = FENToVector(fen);
 
-    auto [enPassantX, enPassantY] = algebraicNotationToVector(enPassant);
+    int enPassantX;
+    int enPassantY;
+
+    if (enPassant != "-")
+    {
+        CoOrdinates enPassantCoordinates = algebraicNotationToVector(enPassant);
+        enPassantX = enPassantCoordinates.x;
+        enPassantY = enPassantCoordinates.y;
+    }
 
     if (draw)
     {
@@ -86,6 +95,13 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
         throw runtime_error("No piece at given square");
     }
 
+    pieceCaller(board, validAlgebraicNotation, piece, x, y, kx, ky, activeColor, enPassantX, enPassantY, castlingRights);
+
+    return validAlgebraicNotation;
+}
+
+void pieceCaller(vector<vector<int>> &board, vector<string> &validAlgebraicNotation, int piece, int x, int y, int kx, int ky, Color activeColor, int enPassantX, int enPassantY, string castlingRights)
+{
     int absPiece = abs(piece); // determines type of piece
 
     switch (absPiece)
@@ -133,7 +149,7 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
     case KING:
     {
         cout << "king" << endl;
-        vector<vector<int>> validMoves = kingMovement(board, kx, ky, activeColor);
+        vector<vector<int>> validMoves = kingMovement(board, kx, ky, activeColor, castlingRights);
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;
     }
@@ -141,6 +157,4 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
     default:
         throw runtime_error("Unknown piece type");
     };
-
-    return validAlgebraicNotation;
 }

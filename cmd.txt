@@ -49,9 +49,9 @@ unordered_map<char, int> charToPiece =
 
 things to be implemented 
 
+en passant done
+castling done
 stalemate 
-en passant
 promotion (thinking of doing it in frontend lets see )
-castling 
 
 
