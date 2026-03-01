@@ -34,6 +34,7 @@ const unordered_map<string, int> algebraicNotationToIndex = {
 
 resBoard FENToVector(const string &FEN)
 {
+    vector<vector<int>> pieceLocation;
     vector<string> parts = split(FEN, ' ');
 
     if (parts.size() < 2)
@@ -100,6 +101,10 @@ resBoard FENToVector(const string &FEN)
                     throw runtime_error("Invalid piece");
 
                 board[i][col] = itr->second;
+                if (color == WHITE && itr->second > 0 || color == BLACK && itr->second < 0)
+                {
+                    pieceLocation.push_back({itr->second, i, col});
+                }
 
                 if (ch == 'K')
                     whiteKingPosition = {i, col};
@@ -117,7 +122,7 @@ resBoard FENToVector(const string &FEN)
 
     // TODO: NEED TO HANDLE OTHER PART OF THE FEN AFTER ACTIVE COLOR
 
-    return {board, color, false, whiteKingPosition, blackKingPosition, enPassant, castlingRights};
+    return {board, color, false, whiteKingPosition, blackKingPosition, enPassant, castlingRights, pieceLocation};
 }
 
 vector<string> vectorToAlgebraicNotation(const vector<vector<int>> &vec)

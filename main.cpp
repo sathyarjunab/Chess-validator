@@ -37,7 +37,7 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
     auto [x, y] = algebraicNotationToVector(pieceMove);
     auto [kx, ky] = algebraicNotationToVector(kingPosition);
 
-    auto [board, activeColor, draw, whiteKingPosition, blackKingPosition, enPassant, castlingRights] = FENToVector(fen);
+    auto [board, activeColor, draw, whiteKingPosition, blackKingPosition, enPassant, castlingRights, pieceLocation] = FENToVector(fen);
 
     int enPassantX;
     int enPassantY;
@@ -55,8 +55,6 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
     }
 
     // testing logging the complete board to check what it will give
-
-    vector<string> validAlgebraicNotation;
 
     for (int i = 0; i < 8; i++)
     {
@@ -90,18 +88,23 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
         }
     }
 
+    if (isBoardOnStalemate(pieceLocation, board, kx, ky, activeColor, enPassantX, enPassantY, castlingRights))
+    {
+        return {"STALEMATE"};
+    }
+
     if (piece == EMPTY)
     {
         throw runtime_error("No piece at given square");
     }
 
-    pieceCaller(board, validAlgebraicNotation, piece, x, y, kx, ky, activeColor, enPassantX, enPassantY, castlingRights);
-
-    return validAlgebraicNotation;
+    return pieceCaller(board, piece, x, y, kx, ky, activeColor, enPassantX, enPassantY, castlingRights);
 }
 
-void pieceCaller(vector<vector<int>> &board, vector<string> &validAlgebraicNotation, int piece, int x, int y, int kx, int ky, Color activeColor, int enPassantX, int enPassantY, string castlingRights)
+vector<string> pieceCaller(vector<vector<int>> &board, int piece, int x, int y, int kx, int ky, Color activeColor, int enPassantX, int enPassantY, string castlingRights)
 {
+    vector<string> validAlgebraicNotation;
+
     int absPiece = abs(piece); // determines type of piece
 
     switch (absPiece)
@@ -157,4 +160,5 @@ void pieceCaller(vector<vector<int>> &board, vector<string> &validAlgebraicNotat
     default:
         throw runtime_error("Unknown piece type");
     };
+    return validAlgebraicNotation;
 }

@@ -51,7 +51,7 @@ things to be implemented
 
 en passant done
 castling done
-stalemate 
+stalemate done 
 promotion (thinking of doing it in frontend lets see )
 
 

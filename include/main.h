@@ -15,9 +15,8 @@ std::vector<std::string> giveMeMove(
 #include <vector>
 #include <string>
 
-void pieceCaller(
+std::vector<std::string> pieceCaller(
     std::vector<std::vector<int>> &board,
-    std::vector<std::string> &validAlgebraicNotation,
     int piece,
     int x,
     int y,

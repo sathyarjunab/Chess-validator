@@ -1,6 +1,8 @@
 #pragma once
 
 #include <unordered_map>
+#include <vector>
+#include <string>
 
 /*
 Color mapping:
@@ -26,3 +28,12 @@ enum PieceType
 
 // Only declare in header
 extern const std::unordered_map<char, int> piecesToNum;
+bool isBoardOnStalemate(
+    std::vector<std::vector<int>> &pieceLocation,
+    std::vector<std::vector<int>> &board,
+    int kx,
+    int ky,
+    Color activeColor,
+    int enPassantX,
+    int enPassantY,
+    std::string castlingRights);
