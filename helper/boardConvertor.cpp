@@ -36,7 +36,6 @@ resBoard FENToVector(const string &FEN)
 {
     vector<vector<int>> pieceLocation;
     vector<string> parts = split(FEN, ' ');
-    cout<<FEN<<endl;
 
     if (parts.size() < 2)
         throw runtime_error("Invalid FEN");

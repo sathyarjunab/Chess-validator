@@ -109,13 +109,23 @@ vector<vector<int>> pawnValidMovesChecker(vector<vector<int>> &board, int x, int
 
     // check for en Passant
     int opponentPawn = color == WHITE ? -PAWN : PAWN;
-    if ((board[x][y + 1] == opponentPawn) && enPassantCoordinates[0] == x + direction && enPassantCoordinates[0] == y + 1)
+    if ((board[x][y + 1] == opponentPawn) && enPassantCoordinates[0] == x + direction && enPassantCoordinates[1] == y + 1)
     {
-        filteredMoves.push_back(enPassantCoordinates);
+        vector<vector<int>> boardCopy = board;
+        boardCopy[enPassantCoordinates[0]][enPassantCoordinates[1]] = board[x][y];
+        boardCopy[x][y] = EMPTY;
+        boardCopy[x][y + 1] = EMPTY; // remove the opponent pawn that is captured en passant
+        if (!isKingInCheck(boardCopy, kingX, kingY, color))
+            filteredMoves.push_back(enPassantCoordinates);
     }
-    if ((board[x][y - 1] == opponentPawn) && enPassantCoordinates[0] == x + direction && enPassantCoordinates[0] == y - 1)
+    if ((board[x][y - 1] == opponentPawn) && enPassantCoordinates[0] == x + direction && enPassantCoordinates[1] == y - 1)
     {
-        filteredMoves.push_back(enPassantCoordinates);
+        vector<vector<int>> boardCopy = board;
+        boardCopy[enPassantCoordinates[0]][enPassantCoordinates[1]] = board[x][y];
+        boardCopy[x][y] = EMPTY;
+        boardCopy[x][y - 1] = EMPTY;
+        if (!isKingInCheck(boardCopy, kingX, kingY, color))
+            filteredMoves.push_back(enPassantCoordinates);
     }
     return filteredMoves;
 }

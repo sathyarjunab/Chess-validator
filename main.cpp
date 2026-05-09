@@ -14,22 +14,6 @@ using namespace std;
 #include <vector>
 #include <algorithm>
 
-int main()
-{
-
-    vector<vector<int>> board = {
-        {ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK},
-        {PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN, PAWN},
-        {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
-        {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
-        {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
-        {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
-        {-PAWN, -PAWN, -PAWN, -PAWN, -PAWN, -PAWN, -PAWN, -PAWN},
-        {-ROOK, -KNIGHT, -BISHOP, -QUEEN, -KING, -BISHOP, -KNIGHT, -ROOK}};
-    // resBoard data = FENToVector("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-    return 0;
-};
-
 vector<string> giveMeMove(const string &fen, const string &pieceMove, const string &kingPosition)
 {
     auto [x, y] = algebraicNotationToVector(pieceMove);
@@ -51,8 +35,6 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
     {
         return {"DRAW"};
     }
-
-    cout << "en-Passant-co" << enPassantX << " " << enPassantY << endl;
 
     int piece = board[x][y];
 
