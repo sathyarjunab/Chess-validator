@@ -136,16 +136,6 @@ vector<vector<int>> kingMovement(vector<vector<int>> &board,
         {1, -1},
     };
 
-    // WARN: was commented out for a reason do not remove
-    //  if (!kingMoved)
-    //  {
-    //      int x = kingColor == WHITE ? 0 : 7;
-    //      int y = 4;
-
-    // possibleDirection.push_back({x,})
-    // both long castling and short castling should be implemented
-    // }
-
     vector<vector<int>> validMoves;
 
     for (const vector<int> &moves : possibleDirection)
@@ -181,20 +171,148 @@ vector<vector<int>> kingMovement(vector<vector<int>> &board,
             switch (castlingPawn)
             {
             case 'K':
-                if (kingColor == WHITE)
+                if (kingColor == WHITE && board[kingX][kingY] == KING && kingX == 0 && kingY == 4)
+                {
+                    if (isKingInCheck(board, kingX, kingY, kingColor))
+                        continue;
+
+                    if (board[0][5] != EMPTY || board[0][6] != EMPTY)
+                        continue;
+
+                    if (board[0][7] != ROOK)
+                        continue;
+
+                    // the king cannot pass through check (f1)
+                    board[0][5] = board[kingX][kingY];
+                    board[kingX][kingY] = EMPTY;
+                    bool inCheckThrough = isKingInCheck(board, 0, 5, kingColor);
+                    board[kingX][kingY] = board[0][5];
+                    board[0][5] = EMPTY;
+                    if (inCheckThrough)
+                        continue;
+
+                    // the king cannot end in check (g1); include rook move (h1 -> f1)
+                    board[0][6] = board[kingX][kingY];
+                    board[kingX][kingY] = EMPTY;
+                    board[0][5] = board[0][7];
+                    board[0][7] = EMPTY;
+                    bool inCheckDestination = isKingInCheck(board, 0, 6, kingColor);
+                    board[0][7] = board[0][5];
+                    board[0][5] = EMPTY;
+                    board[kingX][kingY] = board[0][6];
+                    board[0][6] = EMPTY;
+                    if (inCheckDestination)
+                        continue;
                     validMoves.push_back({0, 6});
+                }
                 break;
             case 'k':
-                if (kingColor == BLACK)
+                if (kingColor == BLACK && board[kingX][kingY] == -KING && kingX == 7 && kingY == 4)
+                {
+                    if (isKingInCheck(board, kingX, kingY, kingColor))
+                        continue;
+
+                    if (board[7][5] != EMPTY || board[7][6] != EMPTY)
+                        continue;
+
+                    if (board[7][7] != -ROOK)
+                        continue;
+
+                    // the king cannot pass through check (f8)
+                    board[7][5] = board[kingX][kingY];
+                    board[kingX][kingY] = EMPTY;
+                    bool inCheckThrough = isKingInCheck(board, 7, 5, kingColor);
+                    board[kingX][kingY] = board[7][5];
+                    board[7][5] = EMPTY;
+                    if (inCheckThrough)
+                        continue;
+
+                    // the king cannot end in check (g8); include rook move (h8 -> f8)
+                    board[7][6] = board[kingX][kingY];
+                    board[kingX][kingY] = EMPTY;
+                    board[7][5] = board[7][7];
+                    board[7][7] = EMPTY;
+                    bool inCheckDestination = isKingInCheck(board, 7, 6, kingColor);
+                    board[7][7] = board[7][5];
+                    board[7][5] = EMPTY;
+                    board[kingX][kingY] = board[7][6];
+                    board[7][6] = EMPTY;
+                    if (inCheckDestination)
+                        continue;
                     validMoves.push_back({7, 6});
+                }
                 break;
             case 'Q':
-                if (kingColor == WHITE)
-                    validMoves.push_back({0, 1});
+                if (kingColor == WHITE && board[kingX][kingY] == KING && kingX == 0 && kingY == 4)
+                {
+                    if (isKingInCheck(board, kingX, kingY, kingColor))
+                        continue;
+
+                    if (board[0][1] != EMPTY || board[0][2] != EMPTY || board[0][3] != EMPTY)
+                        continue;
+
+                    if (board[0][0] != ROOK)
+                        continue;
+
+                    // the king cannot pass through check (d1)
+                    board[0][3] = board[kingX][kingY];
+                    board[kingX][kingY] = EMPTY;
+                    bool inCheckThrough = isKingInCheck(board, 0, 3, kingColor);
+                    board[kingX][kingY] = board[0][3];
+                    board[0][3] = EMPTY;
+                    if (inCheckThrough)
+                        continue;
+
+                    // the king cannot end in check (c1); include rook move (a1 -> d1)
+                    board[0][2] = board[kingX][kingY];
+                    board[kingX][kingY] = EMPTY;
+                    board[0][3] = board[0][0];
+                    board[0][0] = EMPTY;
+                    bool inCheckDestination = isKingInCheck(board, 0, 2, kingColor);
+                    board[0][0] = board[0][3];
+                    board[0][3] = EMPTY;
+                    board[kingX][kingY] = board[0][2];
+                    board[0][2] = EMPTY;
+                    if (inCheckDestination)
+                        continue;
+                    validMoves.push_back({0, 2});
+                }
                 break;
             case 'q':
-                if (kingColor == BLACK)
-                    validMoves.push_back({7, 1});
+                if (kingColor == BLACK && board[kingX][kingY] == -KING && kingX == 7 && kingY == 4)
+                {
+                    if (isKingInCheck(board, kingX, kingY, kingColor))
+                        continue;
+
+                    if (board[7][1] != EMPTY || board[7][2] != EMPTY || board[7][3] != EMPTY)
+                        continue;
+
+                    if (board[7][0] != -ROOK)
+                        continue;
+
+                    // the king cannot pass through check (d8)
+                    board[7][3] = board[kingX][kingY];
+                    board[kingX][kingY] = EMPTY;
+                    bool inCheckThrough = isKingInCheck(board, 7, 3, kingColor);
+                    board[kingX][kingY] = board[7][3];
+                    board[7][3] = EMPTY;
+                    if (inCheckThrough)
+                        continue;
+
+                    // the king cannot end in check (c8); include rook move (a8 -> d8)
+                    board[7][2] = board[kingX][kingY];
+                    board[kingX][kingY] = EMPTY;
+                    board[7][3] = board[7][0];
+                    board[7][0] = EMPTY;
+                    bool inCheckDestination = isKingInCheck(board, 7, 2, kingColor);
+                    board[7][0] = board[7][3];
+                    board[7][3] = EMPTY;
+                    board[kingX][kingY] = board[7][2];
+                    board[7][2] = EMPTY;
+                    if (inCheckDestination)
+                        continue;
+                    validMoves.push_back({7, 2});
+                }
                 break;
             default:
                 break;
@@ -246,29 +364,31 @@ result checkForMate(vector<vector<int>> &board, int kingX, int kingY, Color king
 
         // 2.1 get the direction in which the king is been attacked,
         // NOTE: there can be no way king and the opponent piece be present next to each other without a empty space in between
-
         AttackerDetails attackerDetail = kingAttackInfo.attackers[0];
 
         vector<int> d = attackerDetail.direction;
 
-        int attemptX = attackerDetail.x + d[0];
+        int oppositeX = (d[0] * -1);
+        int oppositeY = (d[1] * -1);
 
-        int attemptY = attackerDetail.y + d[1];
+        int attemptX = attackerDetail.x + oppositeX;
 
-        while ((attemptX != attackerDetail.x || attemptY != attackerDetail.y) && (attemptX < attackerDetail.x && attemptY < attackerDetail.y))
+        int attemptY = attackerDetail.y + oppositeY;
+
+        while (attemptX != kingX || attemptY != kingY)
         {
             if (attemptX < 0 || attemptX > 7 || attemptY < 0 || attemptY > 7)
                 throw runtime_error("Went out of bound while checking for mate");
 
             AttackerReturn lastHopes = isAttacked(board, attemptX, attemptY, opponentColor, false);
 
-            vector<AttackerDetails> legalMoves = legallyAttacked(board, attemptX, attemptY, opponentColor, opponentsKingX, opponentsKingY, lastHopes.attackers);
+            vector<AttackerDetails> legalMoves = legallyAttacked(board, attemptX, attemptY, opponentColor, kingX, kingY, lastHopes.attackers);
 
             if (legalMoves.size() > 0)
                 return {false, {}};
 
-            attemptX = attackerDetail.x + d[0];
-            attemptY = attackerDetail.y + d[1];
+            attemptX = attemptX + oppositeX;
+            attemptY = attemptY + oppositeY;
         }
 
         return {true, opponentColor};

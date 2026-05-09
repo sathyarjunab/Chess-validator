@@ -1,5 +1,4 @@
 using namespace std;
-// piece includes
 #include "./include/pieces/pawn.h"
 #include "./include/pieces/knight.h"
 #include "./include/pieces/bishop.h"
@@ -17,7 +16,6 @@ using namespace std;
 
 int main()
 {
-    cout << "Chess Validator Initialized\n";
 
     vector<vector<int>> board = {
         {ROOK, KNIGHT, BISHOP, QUEEN, KING, BISHOP, KNIGHT, ROOK},
@@ -54,18 +52,6 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
         return {"DRAW"};
     }
 
-    // testing logging the complete board to check what it will give
-
-    for (int i = 0; i < 8; i++)
-    {
-        for (int j = 0; j < 8; j++)
-        {
-            cout << board[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-    cout << "given x,y" << x << " " << y << endl;
     cout << "en-Passant-co" << enPassantX << " " << enPassantY << endl;
 
     int piece = board[x][y];
@@ -79,8 +65,6 @@ vector<string> giveMeMove(const string &fen, const string &pieceMove, const stri
     {
         // if he is in attack lets check if some one as won
         result mate = checkForMate(board, kx, ky, activeColor, true, attackerKingPosition[0], attackerKingPosition[1]);
-
-        cout << "came out of the checkmate function" << endl;
 
         if (mate.inCheckMate)
         {
@@ -111,7 +95,6 @@ vector<string> pieceCaller(vector<vector<int>> &board, int piece, int x, int y, 
     {
     case PAWN:
     {
-        cout << "pawn" << endl;
         vector<vector<int>> validMoves = pawnMovement(board, x, y, kx, ky, activeColor, {enPassantX, enPassantY});
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;
@@ -119,7 +102,6 @@ vector<string> pieceCaller(vector<vector<int>> &board, int piece, int x, int y, 
 
     case KNIGHT:
     {
-        cout << "knight" << endl;
         vector<vector<int>> validMoves = knightMovement(board, x, y, kx, ky, activeColor);
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;
@@ -127,7 +109,6 @@ vector<string> pieceCaller(vector<vector<int>> &board, int piece, int x, int y, 
 
     case BISHOP:
     {
-        cout << "bishop" << endl;
         vector<vector<int>> validMoves = bishopMovement(board, x, y, kx, ky, activeColor);
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;
@@ -135,7 +116,6 @@ vector<string> pieceCaller(vector<vector<int>> &board, int piece, int x, int y, 
 
     case ROOK:
     {
-        cout << "rook" << endl;
         vector<vector<int>> validMoves = rookMovement(board, x, y, kx, ky, activeColor);
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;
@@ -143,7 +123,6 @@ vector<string> pieceCaller(vector<vector<int>> &board, int piece, int x, int y, 
 
     case QUEEN:
     {
-        cout << "Queen" << endl;
         vector<vector<int>> validMoves = queenMovement(board, x, y, kx, ky, activeColor);
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;
@@ -151,7 +130,6 @@ vector<string> pieceCaller(vector<vector<int>> &board, int piece, int x, int y, 
 
     case KING:
     {
-        cout << "king" << endl;
         vector<vector<int>> validMoves = kingMovement(board, kx, ky, activeColor, castlingRights);
         validAlgebraicNotation = vectorToAlgebraicNotation(validMoves);
         break;

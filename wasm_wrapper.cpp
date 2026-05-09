@@ -12,16 +12,23 @@ extern "C"
     {
         static std::string result;
 
-        std::vector<std::string> moves =
-            giveMeMove(fen, pieceMove, kingMove);
-
-        result.clear();
-
-        for (size_t i = 0; i < moves.size(); ++i)
+        try
         {
-            result += moves[i];
-            if (i != moves.size() - 1)
-                result += ",";
+            std::vector<std::string> moves =
+                giveMeMove(fen, pieceMove, kingMove);
+
+            result.clear();
+
+            for (size_t i = 0; i < moves.size(); ++i)
+            {
+                result += moves[i];
+                if (i != moves.size() - 1)
+                    result += ",";
+            }
+        }
+        catch (const std::exception &e)
+        {
+            result = std::string("ERROR:") + e.what();
         }
 
         return result.c_str();

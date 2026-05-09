@@ -38,7 +38,7 @@ AttackerReturn isAttacked(vector<vector<int>> &board,
 {
 
     int numberOfAttackers = 0;
-    vector<AttackerDetails> attacker;
+    vector<AttackerDetails> attackers;
     // gives all the L-shaped moves
     vector<vector<int>> moves = lMovement(board, x, y);
     Color opponentColor = pieceColor == BLACK ? WHITE : BLACK;
@@ -52,11 +52,9 @@ AttackerReturn isAttacked(vector<vector<int>> &board,
         if ((pieceColor == BLACK && board[aX][aY] == KNIGHT) || (pieceColor == WHITE && board[aX][aY] == -KNIGHT))
         {
             numberOfAttackers++;
-            attacker.push_back({aX, aY, {}});
+            attackers.push_back({aX, aY, {}});
         }
     }
-
-    cout << "1." << numberOfAttackers << endl;
 
     // Rook / Queen directions
     static const int directions[8][2] = {
@@ -84,12 +82,10 @@ AttackerReturn isAttacked(vector<vector<int>> &board,
             if (((d[0] == 0 || d[1] == 0) && (absPiece == ROOK || absPiece == QUEEN)) || ((d[0] != 0 && d[1] != 0) && (absPiece == BISHOP || absPiece == QUEEN)))
             {
                 numberOfAttackers++;
-                attacker.push_back({hit.x, hit.y, {d[0], d[1]}});
+                attackers.push_back({hit.x, hit.y, {d[0], d[1]}});
             }
         }
     }
-
-    cout << "2." << numberOfAttackers << endl;
 
     // pawn attack
     if (pieceColor == WHITE)
@@ -100,12 +96,12 @@ AttackerReturn isAttacked(vector<vector<int>> &board,
             if (y > 0 && board[X][y - 1] == -PAWN)
             {
                 numberOfAttackers++;
-                attacker.push_back({X, y - 1, {1, -1}});
+                attackers.push_back({X, y - 1, {1, -1}});
             }
             if (y < board[0].size() - 1 && board[X][y + 1] == -PAWN)
             {
                 numberOfAttackers++;
-                attacker.push_back({X, y + 1, {1, 1}});
+                attackers.push_back({X, y + 1, {1, 1}});
             }
         }
     }
@@ -118,17 +114,15 @@ AttackerReturn isAttacked(vector<vector<int>> &board,
             if (y > 0 && board[X][y - 1] == PAWN)
             {
                 numberOfAttackers++;
-                attacker.push_back({X, y - 1, {-1, -1}});
+                attackers.push_back({X, y - 1, {-1, -1}});
             }
             if (y < board[0].size() - 1 && board[X][y + 1] == PAWN)
             {
                 numberOfAttackers++;
-                attacker.push_back({X, y + 1, {-1, 1}});
+                attackers.push_back({X, y + 1, {-1, 1}});
             }
         }
     }
-
-    cout << "3." << numberOfAttackers << endl;
 
     if (wantToCheckKingAttack)
     {
@@ -148,21 +142,18 @@ AttackerReturn isAttacked(vector<vector<int>> &board,
                 (pieceColor == BLACK && piece > 0 && abs(piece) == KING))
             {
                 numberOfAttackers++;
-                attacker.push_back({nx, ny, {d[0], d[1]}});
+                attackers.push_back({nx, ny, {d[0], d[1]}});
             }
         }
     }
-    cout << "4." << numberOfAttackers << endl;
 
     if (numberOfAttackers == 0)
     {
-        cout << "where is it ";
-        return {false, numberOfAttackers, attacker};
+        return {false, numberOfAttackers, attackers};
     }
     else
     {
-        cout << "where is it ";
-        return {true, numberOfAttackers, attacker};
+        return {true, numberOfAttackers, attackers};
     }
 }
 

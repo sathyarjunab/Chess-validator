@@ -1,6 +1,4 @@
-cmake -S . -B build
-cmake --build build
-./build/Debug/chess_validator
+C:\Users\sathy\Desktop\emsdk\emsdk\upstream\emscripten\emcc.bat wasm_wrapper.cpp main.cpp board.cpp common-moves/traveling.cpp helper/boardConvertor.cpp helper/helper.cpp pieces/bishop.cpp pieces/king.cpp pieces/knight.cpp pieces/pawn.cpp pieces/queen.cpp pieces/rook.cpp -Iinclude -O3 -s WASM=1 -s MODULARIZE=1 -s EXPORT_ES6=1 -s EXPORT_NAME=ChessValidator -s EXPORTED_FUNCTIONS="['_validateMove']" -s EXPORTED_RUNTIME_METHODS="['ccall']" -o chess_validator.js
 
 
 
