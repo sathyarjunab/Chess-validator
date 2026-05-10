@@ -332,14 +332,18 @@ result checkForMate(vector<vector<int>> &board, int kingX, int kingY, Color king
         AttackerReturn kingAttackInfo = isAttacked(board, kingX, kingY, kingColor, false);
 
         if (!kingAttackInfo.isInAttack)
+        {
             return {false, {}};
+        }
 
         // lets see if there are any legal moves for king if yes then no one has won
         // and since when the king is in check we can't let it castle
         vector<vector<int>> moves = kingMovement(board, kingX, kingY, kingColor, "-");
         // since there are legal moves available then no one has won
         if (moves.size() > 0)
+        {
             return {false, {}};
+        }
 
         // the only way king could have saved from this check was by moving itself to a square that is not under attack
         // and since that is not possible then the king is checkmated
@@ -354,7 +358,7 @@ result checkForMate(vector<vector<int>> &board, int kingX, int kingY, Color king
         // 1. take the piece that is attacking the king
         AttackerReturn isHunterBeingHunted = isAttacked(board, kingAttackInfo.attackers[0].x, kingAttackInfo.attackers[0].y, opponentColor, false);
 
-        vector<AttackerDetails> legalAttacker = legallyAttacked(board, kingAttackInfo.attackers[0].x, kingAttackInfo.attackers[0].y, opponentColor, opponentsKingX, opponentsKingY, kingAttackInfo.attackers);
+        vector<AttackerDetails> legalAttacker = legallyAttacked(board, kingAttackInfo.attackers[0].x, kingAttackInfo.attackers[0].y, opponentColor, kingX, kingY, isHunterBeingHunted.attackers);
 
         if (isHunterBeingHunted.isInAttack && legalAttacker.size() > 0)
         {

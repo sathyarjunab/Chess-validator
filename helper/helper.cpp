@@ -177,9 +177,7 @@ vector<AttackerDetails> legallyAttacked(vector<vector<int>> &board,
         bool isLegalAttack = isLegalAttackMove(board, fromX, fromY, x, y, opponentsKingX, opponentsKingY, opponentColor);
 
         if (isLegalAttack)
-        {
             legalAttacker.push_back(attacker);
-        }
     }
     return legalAttacker;
 }
