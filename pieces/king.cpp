@@ -368,6 +368,11 @@ result checkForMate(vector<vector<int>> &board, int kingX, int kingY, Color king
 
         // 2.1 get the direction in which the king is been attacked,
         // NOTE: there can be no way king and the opponent piece be present next to each other without a empty space in between
+        if (kingAttackInfo.attackers[0].direction.size() == 0)
+        {
+            return {
+                true, opponentColor};
+        }
         AttackerDetails attackerDetail = kingAttackInfo.attackers[0];
 
         vector<int> d = attackerDetail.direction;
